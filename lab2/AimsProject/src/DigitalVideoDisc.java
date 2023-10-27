@@ -55,4 +55,11 @@ public class DigitalVideoDisc {
     public void setLength (int length){
         this.length = length;
     }
+    public boolean equals(DigitalVideoDisc disc1){
+        if (disc1 == null || this == null) 
+        return false;
+        if (!disc1.title.equals(this.title))
+        return false;
+        return true;
+    }
 }
