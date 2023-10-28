@@ -14,9 +14,22 @@ public class Aims {
 
         DigitalVideoDisc dvd4 = new DigitalVideoDisc("Your name", "Romance",20.21f);
         anOrder.addDigitalVideoDisc(dvd4);
-        System.out.println("Total Cost is : " + anOrder.totalCost());
+        anOrder.totalCost();
 
         anOrder.removeDigitalVideoDisc(dvd4);
-        System.out.println("Total Cost is : " + anOrder.totalCost());
+        anOrder.totalCost();
+
+        DigitalVideoDisc dvd5 = new DigitalVideoDisc("Be home", "Dramma",20.22f);
+        DigitalVideoDisc dvd6 = new DigitalVideoDisc("Love", "Civil",20.23f);
+        DigitalVideoDisc dvd7 = new DigitalVideoDisc("Twinkling Watermelon", "Civil",22.22f);
+        DigitalVideoDisc[] List = {dvd5, dvd6, dvd7};
+        anOrder.addDigitalVideoDisc(List);
+        anOrder.totalCost();
+
+        DigitalVideoDisc dvd8 = new DigitalVideoDisc("Titanic", "Dramma",10.19f);
+        DigitalVideoDisc dvd9 = new DigitalVideoDisc("Lonely", "Host",18.19f);
+        anOrder.addDigitalVideoDisc(dvd8, dvd9);
+        anOrder.totalCost();
+        
     }
 }
