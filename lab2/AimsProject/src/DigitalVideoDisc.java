@@ -6,6 +6,11 @@ public class DigitalVideoDisc {
     private String director;
     private int length;
     private float cost;
+    private int id;
+    private static int nbDigitalVideoDiscs = 0;
+    public int getId (){
+        return id;
+    }
     public String getTitle() {
         return title;
     }
@@ -25,6 +30,7 @@ public class DigitalVideoDisc {
 
     }
     public DigitalVideoDisc(String title){
+        this.id =Update();
         this.title = title;
     }
     public DigitalVideoDisc(String title , String category, float cost){
@@ -61,5 +67,9 @@ public class DigitalVideoDisc {
         if (!disc1.title.equals(this.title))
         return false;
         return true;
+    }
+    private int Update(){
+        nbDigitalVideoDiscs ++;
+        return nbDigitalVideoDiscs;
     }
 }
