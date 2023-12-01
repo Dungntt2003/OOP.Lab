@@ -1,4 +1,4 @@
-package hust.soict.hedpsi.test.media;
+package hust.soict.hedspi.test.media;
 
 import java.util.ArrayList;
 import java.util.Collections;

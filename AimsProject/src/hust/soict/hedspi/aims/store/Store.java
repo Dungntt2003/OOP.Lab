@@ -1,32 +1,33 @@
 package hust.soict.hedspi.aims.store;
 
 import java.util.ArrayList;
+
 import hust.soict.hedspi.aims.media.Media;
 
 public class Store {
 	int totalMedia = 0;
 	ArrayList<Media> itemsInStore = new ArrayList<Media>();
+
 	public void addMedia(Media media) {
 		if (itemsInStore.contains(media)) {
 			System.out.println("Media " + media.getTitle() + " has been added");
-		}
-		else
-		{
+		} else {
 			itemsInStore.add(media);
 			totalMedia++;
 			media.setId(totalMedia);
 			System.out.println("Media " + media.getTitle() + " is added successfully");
 		}
 	}
+
 	public void removeMedia(Media media) {
 		int index = itemsInStore.indexOf(media);
 		if (index != -1) {
 			itemsInStore.remove(index);
 			System.out.println("Media" + media.getTitle() + " has been deleted");
-		}
-		else System.out.println("Media " + media.getTitle() + " not found");
+		} else
+			System.out.println("Media " + media.getTitle() + " not found");
 	}
-	
+
 	public Media searchTitle(String title) {
 		for (Media media : itemsInStore) {
 			if (media.getTitle().equals(title)) {
@@ -35,7 +36,7 @@ public class Store {
 		}
 		return null;
 	}
-	
+
 	public static void showMenu() {
 		System.out.println("AIMS");
 		System.out.println("---------------------------------------");
@@ -46,6 +47,7 @@ public class Store {
 		System.out.println("---------------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
+
 	public static void storeMenu() {
 		System.out.println("Options");
 		System.out.println("------------------------");
@@ -57,7 +59,8 @@ public class Store {
 		System.out.println("---------------------------------");
 		System.out.println("Please choose a number : 0-1-2-3-4");
 	}
-	public static void mediaDetailsMenu() {		
+
+	public static void mediaDetailsMenu() {
 		System.out.println("Options");
 		System.out.println("----------------------------");
 		System.out.println("1. Add to cart");
@@ -66,6 +69,7 @@ public class Store {
 		System.out.println("---------------------------------");
 		System.out.println("Please choose a number : 0-1-2");
 	}
+
 	public static void cartMenu() {
 		System.out.println("Options");
 		System.out.println("---------------------------");
@@ -77,6 +81,11 @@ public class Store {
 		System.out.println("0. Back");
 		System.out.println("-------------------------");
 		System.out.println("Please choose a number 0-1-2-3-4-5");
+	}
+
+	public ArrayList<Media> getItemsInStore() {
+		// TODO Auto-generated method stub
+		return itemsInStore;
 	}
 
 }
