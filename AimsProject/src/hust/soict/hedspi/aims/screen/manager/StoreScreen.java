@@ -2,11 +2,13 @@ package hust.soict.hedspi.aims.screen.manager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -39,16 +41,31 @@ public class StoreScreen extends JFrame {
 	JMenuBar createMenuBar() {
 		JMenu menu = new JMenu("Options");
 		JMenuItem viewItem = new JMenuItem("View store");
+		viewItem.addActionListener(e -> {
+			addNewCenter(this.createCenter());
+		});
 		menu.add(viewItem);
 
 		JMenu smUpdateStore = new JMenu("Update store");
 		JMenuItem addBook = new JMenuItem("Add book");
+		addBook.addActionListener(e -> {
+			AddBookToStoreScreen bookScreen = new AddBookToStoreScreen();
+			addNewCenter(bookScreen.createCenter());
+		});
 		smUpdateStore.add(addBook);
 
 		JMenuItem addCd = new JMenuItem("Add CD");
+		addCd.addActionListener(e -> {
+			AddCompactDiscToStoreScreen cdScreen = new AddCompactDiscToStoreScreen();
+			addNewCenter(cdScreen.createCenter());
+		});
 		smUpdateStore.add(addCd);
 
 		JMenuItem addDvd = new JMenuItem("Add DVD");
+		addDvd.addActionListener(e -> {
+			AddDigitalVideoDiscToStoreScreen dvdScreen = new AddDigitalVideoDiscToStoreScreen();
+			addNewCenter(dvdScreen.createCenter());
+		});
 		smUpdateStore.add(addDvd);
 		menu.add(smUpdateStore);
 
@@ -96,6 +113,16 @@ public class StoreScreen extends JFrame {
 		setTitle("Store");
 		setLocationRelativeTo(null);
 		setSize(1024, 768);
+	}
+
+	public void addNewCenter(JPanel panel) {
+		LayoutManager layout = cp.getLayout();
+		Component centerComponent = ((BorderLayout) layout).getLayoutComponent(cp, BorderLayout.CENTER);
+		cp.remove(centerComponent);
+		cp.add(panel, BorderLayout.CENTER);
+		cp.revalidate();
+		cp.repaint();
+
 	}
 
 	public static void main(String[] args) {
