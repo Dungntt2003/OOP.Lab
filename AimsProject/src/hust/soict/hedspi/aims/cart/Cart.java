@@ -1,34 +1,36 @@
 package hust.soict.hedspi.aims.cart;
 
-import java.util.ArrayList;
 import java.util.Collections;
+
 import hust.soict.hedspi.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	int totalMedia = 0;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
-	
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+
 	public void addMedia(Media media) {
 		if (itemsOrdered.contains(media)) {
 			System.out.println("Media " + media.getTitle() + " has been added");
-		}
-		else
-		{
+		} else {
 			itemsOrdered.add(media);
 			totalMedia++;
 			media.setId(totalMedia);
 			System.out.println("Media " + media.getTitle() + " is added successfully");
 		}
 	}
+
 	public void removeMedia(Media media) {
 		int index = itemsOrdered.indexOf(media);
 		if (index != -1) {
 			itemsOrdered.remove(index);
 			System.out.println("Media" + media.getTitle() + " has been deleted");
-			totalMedia --;
-		}
-		else System.out.println("Media " + media.getTitle() + " not found");
+			totalMedia--;
+		} else
+			System.out.println("Media " + media.getTitle() + " not found");
 	}
+
 	public void totalCost() {
 		float sumCost = 0;
 		for (Media media : itemsOrdered) {
@@ -36,6 +38,7 @@ public class Cart {
 		}
 		System.out.println("Total cost : " + sumCost);
 	}
+
 	public Media searchTitle(String title) {
 		for (Media media : itemsOrdered) {
 			if (media.getTitle().equals(title)) {
@@ -44,6 +47,7 @@ public class Cart {
 		}
 		return null;
 	}
+
 	public Media searchId(int id) {
 		for (Media media : itemsOrdered) {
 			if (media.getId() == id) {
@@ -51,25 +55,43 @@ public class Cart {
 			}
 		}
 		return null;
-		
+
 	}
+
 	public int getQuantity() {
 		return itemsOrdered.size();
 	}
+
 	public void removeAllMedia() {
 		itemsOrdered.clear();
 	}
+
 	public void printCart() {
 		for (Media media : itemsOrdered) {
 			System.out.println(media.toString());
 		}
 	}
+
 	public void sortByTitle() {
 		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
 		printCart();
 	}
+
 	public void sortByCost() {
 		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
 		printCart();
+	}
+
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
+
+	public float getCost() {
+		float sumCost = 0;
+		for (Media media : itemsOrdered) {
+			sumCost += media.getCost();
+		}
+		return sumCost;
+
 	}
 }
