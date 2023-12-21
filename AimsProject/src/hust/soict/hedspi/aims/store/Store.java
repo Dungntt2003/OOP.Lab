@@ -6,7 +6,15 @@ import hust.soict.hedspi.aims.media.Media;
 
 public class Store {
 	int totalMedia = 0;
+	private static Store instance;
 	ArrayList<Media> itemsInStore = new ArrayList<Media>();
+
+	public static synchronized Store getInstance() {
+		if (instance == null) {
+			instance = new Store();
+		}
+		return instance;
+	}
 
 	public void addMedia(Media media) {
 		if (itemsInStore.contains(media)) {

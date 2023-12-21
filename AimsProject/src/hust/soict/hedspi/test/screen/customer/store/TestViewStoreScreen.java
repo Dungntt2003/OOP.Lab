@@ -17,7 +17,8 @@ public class TestViewStoreScreen extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		store = new Store();
+		store = Store.getInstance();
+		cart = Cart.getInstance();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The moon", "anime", 10.67f, 100, "Tom");
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("The moon1", "anime1", 10.67f, 100, "Tom1");
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Landmark", "anime2", 100.6f, 200, "Tom2");
@@ -35,9 +36,9 @@ public class TestViewStoreScreen extends Application {
 		store.addMedia(dvd5);
 		store.addMedia(dvd6);
 		// TODO Auto-generated method stub
-		final String STORE_FXML_FILE_PATH = "/hust/soict/hedspi/screen/customer/view/Store.fxml";
+		final String STORE_FXML_FILE_PATH = "/hust/soict/hedspi/aims/screen/customer/view/Store.fxml";
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));
-		ViewStoreController viewStoreController = new ViewStoreController(store);
+		ViewStoreController viewStoreController = new ViewStoreController(store, cart);
 		fxmlLoader.setController(viewStoreController);
 		Parent root = fxmlLoader.load();
 
