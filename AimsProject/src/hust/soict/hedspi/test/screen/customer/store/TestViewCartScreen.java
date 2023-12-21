@@ -7,7 +7,6 @@ import hust.soict.hedspi.aims.screen.customer.controller.CartController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class TestViewCartScreen extends Application {
@@ -42,7 +41,6 @@ public class TestViewCartScreen extends Application {
 		Parent root = fxmlLoader.load();
 
 		arg0.setTitle("Cart");
-		arg0.setScene(new Scene(root));
 		arg0.show();
 	}
 
