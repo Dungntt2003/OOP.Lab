@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
@@ -37,9 +38,19 @@ public class MediaStore extends JPanel {
 			JButton btnPlay = new JButton("Play");
 			btnPlay.addActionListener(e -> {
 				if (media instanceof DigitalVideoDisc) {
-					createDialog(((DigitalVideoDisc) media).play());
+					try {
+						createDialog(((DigitalVideoDisc) media).play());
+					} catch (PlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else {
-					createDialog(((CompactDisc) media).play());
+					try {
+						createDialog(((CompactDisc) media).play());
+					} catch (PlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 			container.add(btnPlay);
