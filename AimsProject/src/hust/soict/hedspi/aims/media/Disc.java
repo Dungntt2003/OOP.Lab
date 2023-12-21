@@ -1,5 +1,7 @@
 package hust.soict.hedspi.aims.media;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
+
 public class Disc extends Media implements Playable {
 	private int length;
 	private String director;
@@ -36,7 +38,7 @@ public class Disc extends Media implements Playable {
 	}
 
 	@Override
-	public String play() {
+	public String play() throws PlayerException {
 		return "";
 	}
 

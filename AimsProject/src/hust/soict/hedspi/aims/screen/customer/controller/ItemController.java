@@ -1,9 +1,11 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
@@ -33,13 +35,13 @@ public class ItemController {
 	private Label lb1Title;
 
 	@FXML
-	void btnAddToCartClicked(ActionEvent event) {
+	void btnAddToCartClicked(ActionEvent event) throws LimitExceededException {
 		// store.removeMedia(media);
 		cart.addMedia(media);
 	}
 
 	@FXML
-	void btnPlayClicked(ActionEvent event) {
+	void btnPlayClicked(ActionEvent event) throws PlayerException {
 		if (media instanceof DigitalVideoDisc) {
 			createDialog(((DigitalVideoDisc) media).play());
 		} else if (media instanceof CompactDisc) {

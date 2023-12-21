@@ -2,11 +2,15 @@ package hust.soict.hedspi.aims.screen.customer.controller;
 
 import java.io.IOException;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.CartTotalCostException;
+import hust.soict.hedspi.aims.exception.MediaNotFoundException;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
@@ -71,7 +75,7 @@ public class CartController {
 	private TableColumn<Media, String> colMediaCategory;
 
 	@FXML
-	void btnRemovePressed(ActionEvent event) {
+	void btnRemovePressed(ActionEvent event) throws MediaNotFoundException, CartTotalCostException {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
 		costLabel.setText(" " + cart.getCost() + "  $");
@@ -84,7 +88,7 @@ public class CartController {
 	private RadioButton radioBtnFilterId;
 
 	@FXML
-	void btnPlayPressed(ActionEvent event) {
+	void btnPlayPressed(ActionEvent event) throws PlayerException {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		if (media instanceof DigitalVideoDisc) {
 			createDialog(((DigitalVideoDisc) media).play());
@@ -120,7 +124,7 @@ public class CartController {
 	}
 
 	@FXML
-	void btnOrderAction(ActionEvent event) {
+	void btnOrderAction(ActionEvent event) throws MediaNotFoundException, CartTotalCostException {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		createDialog(media.getTitle() + " - " + media.getCost() + " is ordered successfully");
 		cart.removeMedia(media);
@@ -128,7 +132,7 @@ public class CartController {
 	}
 
 	@FXML
-	public void initialize() {
+	public void initialize() throws LimitExceededException, CartTotalCostException {
 		colMediaId.setCellValueFactory(new PropertyValueFactory<Media, Integer>("id"));
 		colMediaTitle.setCellValueFactory(new PropertyValueFactory<Media, String>("title"));
 		colMediaCategory.setCellValueFactory(new PropertyValueFactory<Media, String>("category"));
