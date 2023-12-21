@@ -3,10 +3,12 @@ package hust.soict.hedspi.aims.screen.customer.controller;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
+import hust.soict.hedspi.aims.store.Store;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class ItemController {
+	private Cart cart = Cart.getInstance();
+	private Store store = Store.getInstance();
 	private Media media;
 	@FXML
 	private Label lb1Cost;
@@ -30,7 +34,8 @@ public class ItemController {
 
 	@FXML
 	void btnAddToCartClicked(ActionEvent event) {
-
+		// store.removeMedia(media);
+		cart.addMedia(media);
 	}
 
 	@FXML

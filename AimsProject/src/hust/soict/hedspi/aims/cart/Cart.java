@@ -7,8 +7,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Cart {
-	int totalMedia = 0;
+	public static final int MAX_NUMBERS_ORDERED = 100;
+	private static Cart instance;
+	private int totalMedia = 0;
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+
+	public static synchronized Cart getInstance() {
+		if (instance == null) {
+			instance = new Cart();
+		}
+		return instance;
+	}
 
 	public void addMedia(Media media) {
 		if (itemsOrdered.contains(media)) {

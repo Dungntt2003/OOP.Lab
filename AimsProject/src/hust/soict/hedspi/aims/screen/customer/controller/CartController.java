@@ -1,5 +1,7 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
+import java.io.IOException;
+
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -9,11 +11,16 @@ import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
+import hust.soict.hedspi.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -22,12 +29,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class CartController {
 	private Cart cart;
+	private Store store;
 
-	public CartController(Cart cart) {
+	public CartController(Store store, Cart cart) {
 		this.cart = cart;
+		this.store = store;
 	}
 
 	@FXML
@@ -94,6 +104,19 @@ public class CartController {
 
 	@FXML
 	void btnViewStorePressed(ActionEvent event) {
+		try {
+			final String STORE_FXML_FILE_PATH = "/hust/soict/hedspi/aims/screen/customer/view/Store.fxml";
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));
+			fxmlLoader.setController(new ViewStoreController(store, cart));
+			Parent root = fxmlLoader.load();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.setTitle("Store");
+			stage.show();
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
